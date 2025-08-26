@@ -1,0 +1,296 @@
+/* Typography — using system fonts for performance; easy to swap with Google Fonts if desired */
+:root {
+  --bg: #0b0c10;
+  --surface: #111217;
+  --muted-surface: #171922;
+  --text: #e9ebf0;
+  --text-muted: #b8bfd1;
+  --brand: #2dd4bf; /* teal */
+  --brand-weak: #99f6e4;
+  --card: #131520;
+  --ring: rgba(45, 212, 191, 0.5);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  --radius: 16px;
+  --radius-lg: 20px;
+  --maxw: 1100px;
+
+  --step--1: clamp(0.88rem, 0.83rem + 0.2vw, 1rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.9vw, 1.6rem);
+  --step-2: clamp(1.5rem, 1.2rem + 1.6vw, 2rem);
+  --step-3: clamp(2rem, 1.6rem + 2.6vw, 2.8rem);
+  --step-4: clamp(2.5rem, 2rem + 3.6vw, 3.6rem);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --muted-surface: #f0f3f8;
+    --text: #0f172a;
+    --text-muted: #475569;
+    --brand: #0ea5e9; /* sky */
+    --brand-weak: #7dd3fc;
+    --card: #ffffff;
+    --ring: rgba(14, 165, 233, 0.45);
+    --shadow: 0 10px 30px rgba(2, 8, 23, 0.08);
+  }
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 10% -10%, rgba(45,212,191,0.08), transparent),
+              radial-gradient(1000px 600px at 100% 0%, rgba(14,165,233,0.08), transparent),
+              var(--bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+}
+
+.container {
+  width: min(92vw, var(--maxw));
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--brand);
+  color: #001014;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  outline: 3px solid var(--ring);
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: saturate(120%) blur(8px);
+  background: color-mix(in lab, var(--surface), transparent 20%);
+  border-bottom: 1px solid color-mix(in lab, var(--text), transparent 90%);
+}
+.header-inner {
+  padding: 1rem 0;
+}
+.site-title {
+  margin: 0;
+  font-size: var(--step-2);
+  letter-spacing: 0.3px;
+}
+.site-subtitle {
+  margin: 0.2rem 0 0;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+/* Hero */
+.hero {
+  padding: 2.5rem 0 1rem;
+}
+.hero-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+.portrait figcaption {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.6rem;
+}
+.hero-content h2 {
+  font-size: var(--step-3);
+  line-height: 1.2;
+  margin: 0 0 0.8rem;
+}
+.hero-content p {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+}
+.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(120deg, var(--brand), var(--brand-weak));
+  color: #001014;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.button:hover { transform: translateY(-1px); filter: saturate(1.1); }
+.button:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
+
+/* Facts */
+.facts {
+  padding: 2rem 0 0.5rem;
+}
+.facts h3,
+.biography h3,
+.timeline h3,
+.quotes h3,
+.resources h3 {
+  font-size: var(--step-2);
+  margin: 0 0 1rem;
+}
+.facts-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.card {
+  background: var(--card);
+  border: 1px solid color-mix(in lab, var(--text), transparent 92%);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+.card h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+}
+.card p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* Biography */
+.biography {
+  padding: 2rem 0 0.5rem;
+}
+.bio-block + .bio-block {
+  margin-top: 1rem;
+}
+.bio-block h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+}
+.bio-block p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* Timeline */
+.timeline {
+  padding: 2rem 0 0.5rem;
+}
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 3px solid color-mix(in lab, var(--brand), transparent 50%);
+}
+.timeline-list li {
+  margin: 0;
+  padding: 0.8rem 0 0.8rem 1rem;
+  position: relative;
+}
+.timeline-list li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 1.25rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--brand);
+  box-shadow: 0 0 0 4px color-mix(in lab, var(--brand), transparent 70%);
+}
+.timeline-list time {
+  font-weight: 700;
+  margin-right: 0.6rem;
+  color: var(--brand-weak);
+}
+
+/* Quotes */
+.quotes {
+  padding: 2rem 0 0.5rem;
+}
+.quote-grid {
+  display: grid;
+  gap: 1rem;
+}
+blockquote {
+  margin: 0;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid var(--brand);
+  background: var(--muted-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+blockquote p {
+  margin: 0;
+  font-size: var(--step-0);
+}
+
+/* Resources */
+.resources {
+  padding: 2rem 0 2.5rem;
+}
+.link-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.link-list a {
+  color: var(--brand-weak);
+  text-underline-offset: 3px;
+}
+.link-list a:focus-visible { outline: 3px solid var(--ring); }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid color-mix(in lab, var(--text), transparent 90%);
+  background: color-mix(in lab, var(--surface), transparent 10%);
+}
+.footer-inner {
+  padding: 1rem 0 2rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (min-width: 720px) {
+  .hero-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 2.5rem;
+  }
+  .facts-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .quote-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Print-friendly tweaks */
+@media print {
+  .button, .site-header, .site-footer, .skip-link { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card, blockquote { box-shadow: none; }
+}
