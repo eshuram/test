@@ -1,0 +1,61 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #80aee7; /* light blue background */
+  color: #000;
+}
+
+/* Container */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+/* Left Section */
+.left {
+  flex: 1;
+  text-align: center;
+}
+
+.left .icon {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.left h1 {
+  font-size: 40px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.left p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Right Section */
+.right {
+  flex: 1;
+}
+
+.right ol {
+  list-style-position: inside;
+  columns: 2; /* Split into 2 columns like in image */
+  font-size: 18px;
+  padding-left: 20px;
+}
+
+.right a {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #00008b;
+  text-decoration: none;
+}
+
+.right a:hover {
+  text-decoration: underline;
+}
